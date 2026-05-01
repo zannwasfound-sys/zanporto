@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andi Muhammad Fauzan – Video Editor</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Josefin+Sans:wght@300;400&family=Sail&display=swap" rel="stylesheet" />
+  <!-- Lucide icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+  <!-- ───────────────── NAV ───────────────── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">AMF<span class="dot">.</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"     class="nav-link">Tentang</a></li>
+        <li><a href="#skills"    class="nav-link">Keahlian</a></li>
+        <li><a href="#gear"      class="nav-link">Peralatan</a></li>
+        <li><a href="#projects"  class="nav-link">Project</a></li>
+        <li><a href="#contact"   class="nav-link">Kontak</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ───────────────── HERO ───────────────── -->
+  <section id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+
+    <div class="hero-content">
+      <div class="hero-photo-wrap reveal" id="flipCard">
+        <!-- SVG stroke animasi ngisi dari bawah ke atas setelah glitch -->
+        <svg class="photo-stroke-svg" viewBox="0 0 340 454" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect class="photo-stroke-rect" x="1.5" y="1.5" width="337" height="451" rx="20" ry="20"/>
+        </svg>
+        <div class="flip-inner">
+
+          <!-- DEPAN: Foto profil -->
+          <div class="flip-front scan-pending">
+            <!-- Layer 1: foto gelap (dasar, selalu ada sebelum scan selesai) -->
+            <img src="photo.png" alt="" class="hero-photo-img photo-dark" aria-hidden="true" />
+            <!-- Layer 2: foto asli, terungkap dari atas ke bawah via clip-path -->
+            <img src="photo.png" alt="Andi Muhammad Fauzan" class="hero-photo-img photo-color" />
+            <!-- Scan line yang bergerak di batas reveal -->
+            <div class="photo-scan-line"></div>
+          </div>
+
+          <!-- BELAKANG: Info singkat -->
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <div class="flip-monogram">AMF</div>
+              <h3 class="flip-name">Andi Muhammad<br/><span class="accent">Fauzan</span></h3>
+              <p class="flip-role">Video Editor &amp; Content Specialist</p>
+              <div class="flip-divider"></div>
+              <div class="flip-stats">
+                <div class="flip-stat"><span class="flip-stat-num">4K</span><span class="flip-stat-label">Quality</span></div>
+                <div class="flip-stat"><span class="flip-stat-num">60</span><span class="flip-stat-label">FPS</span></div>
+                <div class="flip-stat"><span class="flip-stat-num">1+</span><span class="flip-stat-label">Tahun</span></div>
+              </div>
+              <div class="flip-chips">
+                <span>CapCut</span>
+                <span>Alight Motion</span>
+                <span>Samsung S24</span>
+              </div>
+              <p class="flip-uni">Teknik Informatika · UNIKOM 2025</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <p class="hero-sub reveal delay-1">Halo, saya</p>
+        <h1 class="hero-name reveal delay-2">Andi Muhammad<br /><span class="accent">Fauzan</span></h1>
+        <p class="hero-role reveal delay-3">
+          <span class="role-badge">Video Editor</span>
+          <span class="role-badge">Front-end Dev</span>
+          <span class="role-badge">AI Enthusiast</span>
+        </p>
+        <p class="hero-desc reveal delay-4">
+          Mahasiswa Teknik Informatika UNIKOM yang berfokus pada produksi konten digital berkualitas tinggi — dari sinematik pendek hingga konten tren.
+        </p>
+        <div class="hero-cta reveal delay-5">
+          <a href="#projects" class="btn-primary">Lihat Project</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint reveal delay-5">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ───────────────── ABOUT ───────────────── -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title reveal">Tentang <span class="accent">Saya</span></h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            Saya adalah mahasiswa Semester 2 Teknik Informatika UNIKOM (Angkatan 2025) yang berfokus pada produksi konten digital, video editing, dan pengembangan web. Menguasai pengambilan gambar dan audio berkualitas tinggi, dengan ketelitian dalam proses editing untuk menghasilkan visual yang bersih dan menarik.
+          </p>
+          <p>
+            Dengan pengalaman sebagai Video Editor sejak 2025, saya memproduksi video Cinematic berkualitas tinggi sekaligus mengembangkan skill di bidang Front End Web. Saya juga merupakan penyuka AI Prompting — gemar bereksperimen dengan berbagai prompt untuk menghasilkan output terbaik dari AI, dan website portofolio ini pun dibuat dengan bantuan AI.
+          </p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-num">VP</span>
+              <span class="stat-label">Video Production</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">FE</span>
+              <span class="stat-label">Front-end Dev</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">AI</span>
+              <span class="stat-label">AI Prompter</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-tools reveal delay-2">
+          <h3>Tools</h3>
+          <div class="tool-chips">
+            <span class="chip">CapCut</span>
+            <span class="chip">Alight Motion</span>
+            <span class="chip">Samsung S24</span>
+            <span class="chip">PC / Laptop</span>
+            <span class="chip">HTML & CSS</span>
+          </div>
+          <h3 style="margin-top:2rem;">Kelebihan</h3>
+          <ul class="trait-list">
+            <li><i data-lucide="zap"></i> Cepat Beradaptasi</li>
+            <li><i data-lucide="shield-check"></i> Disiplin &amp; Jujur</li>
+            <li><i data-lucide="settings"></i> Solusi Teknis saat Editing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── SKILLS ───────────────── -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title reveal">Keahlian<span class="accent">.</span></h2>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <div class="skill-icon"><i data-lucide="film"></i></div>
+          <h3>Video Editing</h3>
+          <p>CapCut &amp; Alight Motion</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="61"></div></div>
+        </div>
+
+        <div class="skill-card reveal delay-1">
+          <div class="skill-icon"><i data-lucide="video"></i></div>
+          <h3>Video Production</h3>
+          <p>Sinematik Pendek &amp; Konten Tren</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+        </div>
+
+        <div class="skill-card reveal delay-2">
+          <div class="skill-icon"><i data-lucide="layout"></i></div>
+          <h3>Content Planning</h3>
+          <p>Storyboarding &amp; Riset</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+
+        <div class="skill-card reveal delay-3">
+          <div class="skill-icon"><i data-lucide="smartphone"></i></div>
+          <h3>Digital Literacy</h3>
+          <p>Algoritma Sosmed</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="50"></div></div>
+        </div>
+
+        <div class="skill-card reveal delay-4">
+          <div class="skill-icon"><i data-lucide="code"></i></div>
+          <h3>Web Dasar</h3>
+          <p>HTML | CSS | JS</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── GEAR ───────────────── -->
+  <section id="gear">
+    <div class="container">
+      <h2 class="section-title reveal">Peralatan<span class="accent">.</span></h2>
+      <p class="section-sub reveal">Alat yang saya gunakan untuk produksi &amp; editing video</p>
+
+      <div class="gear-grid">
+
+        <!-- Samsung S24 -->
+        <div class="gear-card reveal gear-reveal-1">
+          <div class="gear-photo-wrap">
+            <img
+              src="sams24.jpg"
+              alt="Samsung Galaxy S24"
+              class="gear-photo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="gear-photo-placeholder">
+              <i data-lucide="smartphone"></i>
+              <span>Tambahkan foto</span>
+              <code>gear-samsung.jpg</code>
+            </div>
+          </div>
+          <div class="gear-info">
+            <div class="gear-badge">Kamera Utama</div>
+            <h3 class="gear-name">Samsung Galaxy S24</h3>
+            <p class="gear-desc">Smartphone flagship untuk pengambilan gambar &amp; video 4K/60fps dengan kualitas sinematik.</p>
+            <ul class="gear-specs">
+              <li><i data-lucide="check"></i> Video 4K @ 60fps</li>
+              <li><i data-lucide="check"></i> Kamera 50MP</li>
+              <li><i data-lucide="check"></i> OIS &amp; Nightography</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Gimbal Feiyu Tech Vimble 3 -->
+        <div class="gear-card reveal gear-reveal-2">
+          <div class="gear-photo-wrap">
+            <img
+              src="vim3.jpg"
+              alt="Feiyu Tech Vimble 3"
+              class="gear-photo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="gear-photo-placeholder">
+              <i data-lucide="move-3d"></i>
+              <span>Tambahkan foto</span>
+              <code>gear-gimbal.jpg</code>
+            </div>
+          </div>
+          <div class="gear-info">
+            <div class="gear-badge">Stabilizer</div>
+            <h3 class="gear-name">Feiyu Tech Vimble 3</h3>
+            <p class="gear-desc">Gimbal 3-axis untuk footage yang smooth &amp; stabil dalam berbagai kondisi pengambilan gambar.</p>
+            <ul class="gear-specs">
+              <li><i data-lucide="check"></i> 3-Axis Stabilization</li>
+              <li><i data-lucide="check"></i> Auto-Follow Mode</li>
+              <li><i data-lucide="check"></i> Lipat &amp; Portable</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- HP Spectre X360 -->
+        <div class="gear-card reveal gear-reveal-3">
+          <div class="gear-photo-wrap">
+            <img
+              src="x360.jpg"
+              alt="HP Spectre X360"
+              class="gear-photo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="gear-photo-placeholder">
+              <i data-lucide="laptop"></i>
+              <span>Tambahkan foto</span>
+              <code>gear-laptop.jpg</code>
+            </div>
+          </div>
+          <div class="gear-info">
+            <div class="gear-badge">Editing Station</div>
+            <h3 class="gear-name">HP Spectre X360</h3>
+            <p class="gear-desc">Laptop premium 2-in-1 untuk proses editing video &amp; pengembangan konten secara mobile.</p>
+            <ul class="gear-specs">
+              <li><i data-lucide="check"></i> Intel Core i7-1255U</li>
+              <li><i data-lucide="check"></i> OLED Touch Display</li>
+              <li><i data-lucide="check"></i> 2-in-1 Convertible</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── PROJECTS ───────────────── -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title reveal">Video <span class="accent">Project</span></h2>
+      <p class="section-sub reveal">Geser untuk melihat lebih banyak &rarr;</p>
+
+      <div class="slider-wrapper reveal">
+        <div class="slider-clip">
+        <div class="slider-track" id="sliderTrack">
+
+          <!-- PROJECT CARD 1 -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <div class="video-player-wrap">
+                <video class="cv-video" src="project1.mp4" preload="metadata"></video>
+                <!-- Custom Controls -->
+                <div class="cv-controls">
+                  <div class="cv-progress-wrap">
+                    <div class="cv-progress-bg">
+                      <div class="cv-progress-buf"></div>
+                      <div class="cv-progress-fill"></div>
+                      <div class="cv-progress-thumb"></div>
+                    </div>
+                    <div class="cv-time">
+                      <span class="cv-cur">0:00</span>
+                      <span class="cv-dur">0:00</span>
+                    </div>
+                  </div>
+                  <div class="cv-btn-row">
+                    <div class="cv-left-btns">
+                      <button class="cv-btn cv-play" aria-label="Play/Pause">
+                        <svg class="icon-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                      </button>
+                      <button class="cv-btn cv-skip" data-skip="-10" aria-label="Mundur 10 detik">
+                        <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="12" y="14" text-anchor="middle" font-size="6" fill="currentColor" font-family="sans-serif" font-weight="bold">10</text></svg>
+                      </button>
+                      <button class="cv-btn cv-skip" data-skip="10" aria-label="Maju 10 detik">
+                        <svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="12" y="14" text-anchor="middle" font-size="6" fill="currentColor" font-family="sans-serif" font-weight="bold">10</text></svg>
+                      </button>
+                    </div>
+                    <div class="cv-right-btns">
+                      <div class="cv-vol-wrap">
+                        <button class="cv-btn cv-mute" aria-label="Mute">
+                          <svg class="icon-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/></svg>
+                          <svg class="icon-muted" viewBox="0 0 24 24" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                        </button>
+                        <div class="cv-vol-slider-wrap">
+                          <div class="cv-vol-bg">
+                            <div class="cv-vol-fill"></div>
+                            <div class="cv-vol-thumb"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="cv-btn cv-fs" aria-label="Fullscreen">
+                        <svg class="icon-fs" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                        <svg class="icon-exit-fs" viewBox="0 0 24 24" style="display:none"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Edukatif</span>
+              <h3>Project Video #1</h3>
+              <p>Project ini adalah Projek untuk video penjelasan Tentang Isu Lingkungan mengenai Minyak Jelantah, juga sebagai video pembelajaran waktu Penerimaan Mahasiswa Baru.</p>
+              <a href="https://drive.google.com/uc?export=download&id=1M7ghL3nkINPoAcKfzbKonIlGgHtZk61s" class="btn-download-video">
+                <svg viewBox="0 0 24 24"><path d="M19 13v6H5v-6H3v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2zM12 15.17l-3.59-3.58L7 13l5 5 5-5-1.41-1.41L13 15.17V4h-2v11.17z"/></svg>
+                Download Video
+              </a>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 2 -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <div class="video-player-wrap">
+                <video class="cv-video" src="project2.mp4" preload="metadata"></video>
+                <!-- Custom Controls -->
+                <div class="cv-controls">
+                  <div class="cv-progress-wrap">
+                    <div class="cv-progress-bg">
+                      <div class="cv-progress-buf"></div>
+                      <div class="cv-progress-fill"></div>
+                      <div class="cv-progress-thumb"></div>
+                    </div>
+                    <div class="cv-time">
+                      <span class="cv-cur">0:00</span>
+                      <span class="cv-dur">0:00</span>
+                    </div>
+                  </div>
+                  <div class="cv-btn-row">
+                    <div class="cv-left-btns">
+                      <button class="cv-btn cv-play" aria-label="Play/Pause">
+                        <svg class="icon-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                      </button>
+                      <button class="cv-btn cv-skip" data-skip="-10" aria-label="Mundur 10 detik">
+                        <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="12" y="14" text-anchor="middle" font-size="6" fill="currentColor" font-family="sans-serif" font-weight="bold">10</text></svg>
+                      </button>
+                      <button class="cv-btn cv-skip" data-skip="10" aria-label="Maju 10 detik">
+                        <svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="12" y="14" text-anchor="middle" font-size="6" fill="currentColor" font-family="sans-serif" font-weight="bold">10</text></svg>
+                      </button>
+                    </div>
+                    <div class="cv-right-btns">
+                      <div class="cv-vol-wrap">
+                        <button class="cv-btn cv-mute" aria-label="Mute">
+                          <svg class="icon-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/></svg>
+                          <svg class="icon-muted" viewBox="0 0 24 24" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                        </button>
+                        <div class="cv-vol-slider-wrap">
+                          <div class="cv-vol-bg">
+                            <div class="cv-vol-fill"></div>
+                            <div class="cv-vol-thumb"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="cv-btn cv-fs" aria-label="Fullscreen">
+                        <svg class="icon-fs" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                        <svg class="icon-exit-fs" viewBox="0 0 24 24" style="display:none"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Cinematic</span>
+              <h3>Project Video #2</h3>
+              <p>Sebuah Project Cinematic yang menampilkan pesona alam Pantai Karangpapak. Video ini diambil menggunakan Samsung Galaxy S24 disertai dengan penyempurnaan editing melalui CapCut untuk menonjolkan atmosfer laut yang dramatis.</p>
+              <a href="https://drive.google.com/uc?export=download&id=1E3Zugnthp8WolnhVxW7bfyJrrZw4SNSE" class="btn-download-video">
+                <svg viewBox="0 0 24 24"><path d="M19 13v6H5v-6H3v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2zM12 15.17l-3.59-3.58L7 13l5 5 5-5-1.41-1.41L13 15.17V4h-2v11.17z"/></svg>
+                Download Video
+              </a>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 3 -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <div class="video-player-wrap">
+                <video class="cv-video" src="project3.mp4" preload="metadata"></video>
+                <!-- Custom Controls -->
+                <div class="cv-controls">
+                  <div class="cv-progress-wrap">
+                    <div class="cv-progress-bg">
+                      <div class="cv-progress-buf"></div>
+                      <div class="cv-progress-fill"></div>
+                      <div class="cv-progress-thumb"></div>
+                    </div>
+                    <div class="cv-time">
+                      <span class="cv-cur">0:00</span>
+                      <span class="cv-dur">0:00</span>
+                    </div>
+                  </div>
+                  <div class="cv-btn-row">
+                    <div class="cv-left-btns">
+                      <button class="cv-btn cv-play" aria-label="Play/Pause">
+                        <svg class="icon-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                      </button>
+                      <button class="cv-btn cv-skip" data-skip="-10" aria-label="Mundur 10 detik">
+                        <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="12" y="14" text-anchor="middle" font-size="6" fill="currentColor" font-family="sans-serif" font-weight="bold">10</text></svg>
+                      </button>
+                      <button class="cv-btn cv-skip" data-skip="10" aria-label="Maju 10 detik">
+                        <svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="12" y="14" text-anchor="middle" font-size="6" fill="currentColor" font-family="sans-serif" font-weight="bold">10</text></svg>
+                      </button>
+                    </div>
+                    <div class="cv-right-btns">
+                      <div class="cv-vol-wrap">
+                        <button class="cv-btn cv-mute" aria-label="Mute">
+                          <svg class="icon-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/></svg>
+                          <svg class="icon-muted" viewBox="0 0 24 24" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                        </button>
+                        <div class="cv-vol-slider-wrap">
+                          <div class="cv-vol-bg">
+                            <div class="cv-vol-fill"></div>
+                            <div class="cv-vol-thumb"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="cv-btn cv-fs" aria-label="Fullscreen">
+                        <svg class="icon-fs" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                        <svg class="icon-exit-fs" viewBox="0 0 24 24" style="display:none"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Cinematic</span>
+              <h3>Project Video #3</h3>
+              <p>Project ini saya buat untuk menuangkan rasa kagum saya terhadap alam yang saya lihat saat itu dengan cara membuat Cinematic dan mengeditnya di Capcut</p>
+              <a href="https://drive.google.com/uc?export=download&id=1tCPmUazxm8iAwFa_SQ_ZBVCsG55bJTRq" class="btn-download-video">
+                <svg viewBox="0 0 24 24"><path d="M19 13v6H5v-6H3v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2zM12 15.17l-3.59-3.58L7 13l5 5 5-5-1.41-1.41L13 15.17V4h-2v11.17z"/></svg>
+                Download Video
+              </a>
+            </div>
+          </div>
+
+          <!-- TAMBAH CARD BARU DI SINI — lihat instruksi di komentar bawah -->
+          <!--
+            CARA MENAMBAH VIDEO BARU:
+            1. Copy blok <div class="project-card">...</div> di atas
+            2. Paste setelah card terakhir, sebelum </div> (slider-track penutup)
+            3. Ganti project4.mp4 dengan nama file video kamu
+            4. Ubah judul, deskripsi, dan tag sesuai Projectmu
+            5. Simpan file — slider otomatis menyesuaikan!
+          -->
+
+        </div><!-- /slider-track -->
+
+        </div><!-- /slider-clip -->
+
+        <!-- Slider Controls — di luar clip agar tidak terpotong -->
+        <button class="slider-btn prev" id="sliderPrev" aria-label="Previous">
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <button class="slider-btn next" id="sliderNext" aria-label="Next">
+          <i data-lucide="chevron-right"></i>
+        </button>
+
+        <!-- Dots -->
+        <div class="slider-dots" id="sliderDots"></div>
+
+        <!-- Swipe hint — muncul khusus mobile -->
+        <div class="swipe-hint" id="swipeHint">
+          <span>Geser untuk project lainnya</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ───────────────── CONTACT ───────────────── -->
+  <section id="contact">
+    <!-- Decorative background glow -->
+    <div class="contact-bg-glow"></div>
+
+    <div class="container">
+      <!-- Header -->
+      <div class="contact-header reveal">
+        <p class="contact-eyebrow">Mari Berkolaborasi</p>
+        <h2 class="section-title">Hubungi <span class="accent">Saya</span></h2>
+        <p class="contact-desc">
+          Ada project, kolaborasi, atau sekadar mau ngobrol soal video &amp; konten?<br class="hide-mobile"/>
+          Jangan ragu — saya siap diajak kerja sama.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="contact-grid">
+
+        <!-- Gmail -->
+        <a href="mailto:zannwasfound@gmail.com" class="contact-card reveal" target="_blank" rel="noopener">
+          <div class="contact-card-bg"></div>
+          <div class="contact-icon-wrap gmail">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="26" height="26">
+              <path fill="#4285F4" d="M44 10c0-1.1-.9-2-2-2h-6v14.6l8-5.6V10z"/>
+              <path fill="#EA4335" d="M6 40h6V22.6L4 17v19c0 2.2 1.8 4 4 4z"/>
+              <path fill="#34A853" d="M36 40h6c2.2 0 4-1.8 4-4V17l-10 5.6z"/>
+              <path fill="#FBBC05" d="M36 8l-12 8L12 8H6v9.6l18 10.8 18-10.8V8z"/>
+              <path fill="#C5221F" d="M4 17l8 5.6V8H6c-1.1 0-2 .9-2 2v7z"/>
+            </svg>
+          </div>
+          <div class="contact-body">
+            <span class="contact-platform">Email</span>
+            <span class="contact-handle">zannwasfound@gmail.com</span>
+            <span class="contact-cta">Kirim pesan <i data-lucide="arrow-right" class="cta-icon"></i></span>
+          </div>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/6281285750725" class="contact-card reveal delay-1" target="_blank" rel="noopener">
+          <div class="contact-card-bg"></div>
+          <div class="contact-icon-wrap whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="26" height="26">
+              <path fill="#25D366" d="M24 4C13 4 4 13 4 24c0 3.6 1 7 2.7 9.9L4 44l10.4-2.7C17.1 43 20.5 44 24 44c11 0 20-9 20-20S35 4 24 4z"/>
+              <path fill="#fff" d="M34.4 29.4c-.5-.2-2.9-1.4-3.3-1.6-.4-.2-.7-.2-1 .2-.3.4-1.2 1.6-1.5 1.9-.3.3-.5.4-1 .1-.5-.2-2-.7-3.8-2.3-1.4-1.2-2.4-2.8-2.6-3.2-.3-.5 0-.7.2-1l.7-.8c.2-.3.3-.5.4-.8.1-.3 0-.6-.1-.8-.1-.2-1-2.5-1.4-3.4-.4-.9-.7-.8-1-.8h-.9c-.3 0-.8.1-1.2.6-.4.5-1.6 1.6-1.6 3.9s1.7 4.5 1.9 4.8c.2.3 3.3 5.1 8 7.1 1.1.5 2 .8 2.7 1 1.1.3 2.1.3 2.9.2.9-.1 2.9-1.2 3.3-2.3.4-1.1.4-2.1.3-2.3-.2-.1-.5-.2-1-.4z"/>
+            </svg>
+          </div>
+          <div class="contact-body">
+            <span class="contact-platform">WhatsApp</span>
+            <span class="contact-handle">+62 812-8575-0725</span>
+            <span class="contact-cta">Chat sekarang <i data-lucide="arrow-right" class="cta-icon"></i></span>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/zwithan" class="contact-card reveal delay-2" target="_blank" rel="noopener">
+          <div class="contact-card-bg"></div>
+          <div class="contact-icon-wrap instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="26" height="26">
+              <radialGradient id="ig-grad" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#fd5"/>
+                <stop offset=".328" stop-color="#ff543f"/>
+                <stop offset=".504" stop-color="#e64771"/>
+                <stop offset=".643" stop-color="#d53e91"/>
+                <stop offset=".841" stop-color="#c837ab"/>
+              </radialGradient>
+              <path fill="url(#ig-grad)" d="M34.017 41.99l-20 .019c-4.4.004-8.003-3.592-8.008-7.992l-.019-20c-.004-4.4 3.592-8.003 7.992-8.008l20-.019c4.4-.004 8.003 3.592 8.008 7.992l.019 20c.005 4.401-3.592 8.004-7.992 8.008z"/>
+              <path fill="#fff" d="M24 31c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm6.5-3c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5-.672-1.5-1.5-1.5z"/>
+            </svg>
+          </div>
+          <div class="contact-body">
+            <span class="contact-platform">Instagram</span>
+            <span class="contact-handle">@zwithan</span>
+            <span class="contact-cta">Lihat profil <i data-lucide="arrow-right" class="cta-icon"></i></span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Bottom tagline -->
+      <p class="contact-tagline reveal delay-3">
+        <span class="contact-dot"></span> Biasanya balas dalam <strong>24 jam</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer>
+    <div class="container">
+      <p>© 2025 <span class="accent">Andi Muhammad Fauzan</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  /* ── Particle Network Background ── */
+  (function () {
+    var canvas = document.getElementById('particleCanvas');
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var mouse = { x: -9999, y: -9999 };
+    var COUNT = 90;
+    var MAX_DIST = 140;
+    var COLOR = '34,197,94';
+
+    function resize() {
+      var hero = document.getElementById('hero');
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function Particle() {
+      this.x  = Math.random() * canvas.width;
+      this.y  = Math.random() * canvas.height;
+      this.z  = Math.random() * 1.5 + 0.3; /* depth for 3D feel */
+      this.vx = (Math.random() - 0.5) * 0.4 * this.z;
+      this.vy = (Math.random() - 0.5) * 0.4 * this.z;
+      this.r  = this.z * 1.8;
+    }
+
+    for (var i = 0; i < COUNT; i++) particles.push(new Particle());
+
+    document.getElementById('hero').addEventListener('mousemove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    document.getElementById('hero').addEventListener('mouseleave', function () {
+      mouse.x = -9999; mouse.y = -9999;
+    });
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      /* move */
+      particles.forEach(function (p) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        /* mouse repel */
+        var dx = p.x - mouse.x;
+        var dy = p.y - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          p.x += dx / dist * 1.5;
+          p.y += dy / dist * 1.5;
+        }
+      });
+
+      /* draw lines */
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var a = particles[i], b = particles[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < MAX_DIST) {
+            var depthAlpha = (a.z + b.z) / 6;
+            var alpha = (1 - d / MAX_DIST) * 0.55 * depthAlpha;
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(' + COLOR + ',' + alpha + ')';
+            ctx.lineWidth = (a.z + b.z) / 6;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* draw dots */
+      particles.forEach(function (p) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + COLOR + ',' + (0.5 * p.z) + ')';
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
